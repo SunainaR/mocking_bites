@@ -1,5 +1,43 @@
 require '05_unit_testing_io'
 
+
+RSpec.describe StringRepeater do
+  it "Accepts a string and outputs it 10 times" do
+    io = double :io
+    expect(io).to receive(:puts).with("Hello. I will repeat a string many times.")
+    expect(io).to receive(:puts).with("Please enter a string")
+    expect(io).to receive(:gets).and_return("TWIX")
+    expect(io).to receive(:puts).with("Please enter a number of repeats")
+    expect(io).to receive(:gets).and_return("10")
+    expect(io).to receive(:puts).with("Here is your result:")
+    expect(io).to receive(:puts).with("TWIXTWIXTWIXTWIXTWIXTWIXTWIXTWIXTWIXTWIX")
+    string_repeater = StringRepeater.new(io)
+    string_repeater.run
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=begin
+
 RSpec.describe InteractiveCalculator do
   it "it requests two numbers and returns a calculation phrase" do
     io = double :io
@@ -14,3 +52,5 @@ RSpec.describe InteractiveCalculator do
     calc.run
   end
 end
+
+=end
