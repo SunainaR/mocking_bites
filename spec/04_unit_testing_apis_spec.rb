@@ -1,5 +1,8 @@
 require '04_unit_testing_apis'
 
+=begin
+# Exercise
+
 RSpec.describe TimeError do  
   it "returns the difference" do
     server_time = double :requestor
@@ -8,5 +11,16 @@ RSpec.describe TimeError do
     time_error = TimeError.new(server_time)
     time = Time.new(2023, 03, 23, 11, 05, 14)
     expect(time_error.error(time)).to eq 0.610333
+  end
+end
+
+=end
+
+RSpec.describe CatFacts do
+  it "returns the cat fact" do
+    cat_requestor = double :requestor
+    allow(cat_requestor).to receive(:get).with(URI("https://catfact.ninja/fact")).and_return('{"fact":"Jaguars are the only big cats that don\'t roar.","length":46}')
+    cat_fact = CatFacts.new(cat_requestor)
+    expect(cat_fact.provide).to eq "Cat fact: Jaguars are the only big cats that don't roar."
   end
 end
